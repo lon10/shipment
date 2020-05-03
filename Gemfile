@@ -10,6 +10,11 @@ gem 'grape-swagger-entity', '~> 0.3'
 gem 'grape-swagger-representable', '~> 0.2'
 gem 'yaml'
 
-gem 'byebug'
-gem 'pry'
-gem 'pry-byebug'
+group :test do
+  gem 'byebug'
+  gem 'pry'
+  gem 'pry-byebug'
+
+  gem 'rspec'
+  gem 'rack-test'
+end

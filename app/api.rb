@@ -4,6 +4,11 @@ module API
     format :json
     prefix :api
 
+    desc 'Start page'
+    get '/' do
+      'Welcome to Shipment'
+    end
+
     resource :delivery do
       post 'Calculate delivery time', {
         params: ::Entities::Cart.documentation
@@ -13,6 +18,7 @@ module API
          requires :items, type: Array
       end
       post do
+        # TODO: handle out of stock
         repository = ::Repositories::Product.new(params[:region], params[:items])
         products = repository.find_optimized
         present products, with: ::Entities::Delivery
