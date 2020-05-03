@@ -5,11 +5,16 @@ module API
     prefix :api
 
     resource :delivery do
-      desc 'Calculate delivery time', {
+      post 'Calculate delivery time', {
         params: ::Entities::Cart.documentation
       }
-      post do
-        result = {}
+      params do
+         requires :region, type: String
+         requires :items, type: Array
+      end
+      get do
+        repository = ::Repositories::Product.new(params[:region], params[:items])
+        products = repository.find_optimized
         present result, with: ::Entities::Delivery
       end
     end
