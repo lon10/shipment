@@ -12,10 +12,10 @@ module API
          requires :region, type: String
          requires :items, type: Array
       end
-      get do
+      post do
         repository = ::Repositories::Product.new(params[:region], params[:items])
         products = repository.find_optimized
-        present result, with: ::Entities::Delivery
+        present products, with: ::Entities::Delivery
       end
     end
   end

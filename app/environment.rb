@@ -5,7 +5,8 @@ $: << File.expand_path('../', __FILE__)
 $: << File.expand_path('../../', __FILE__)
  
 ENV['RACK_ENV'] ||= 'development'
- 
+
+require 'pry'
 require 'grape'
 require 'grape-entity'
 require 'grape-swagger'
